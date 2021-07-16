@@ -3,8 +3,12 @@
   "scripts": {
     "build": "tsc"
   },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
-    "@pulumi/pulumi": "latest"
+    "@pulumi/pulumi": "latest",
+    "@pulumi/kubernetes": "latest"
   },
   "pulumi": {
     "resource": true
