@@ -3,9 +3,6 @@
   "scripts": {
     "build": "tsc"
   },
-  "files": [
-    "dist"
-  ],
   "peerDependencies": {
     "@pulumi/pulumi": "latest",
     "@pulumi/kubernetes": "latest"
@@ -13,10 +10,10 @@
   "pulumi": {
     "resource": true
   },
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Pulumi typescript CRDs for cert manager",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "author": "",
   "license": "MIT"
 }
