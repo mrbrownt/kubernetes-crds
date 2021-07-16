@@ -1,0 +1,17 @@
+{
+  "name": "@kubernetes-crds/cert-manager",
+  "scripts": {
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "@pulumi/pulumi": "latest"
+  },
+  "pulumi": {
+    "resource": true
+  },
+  "version": "1.4.0",
+  "description": "Pulumi typescript CRDs for cert manager",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT"
+}
