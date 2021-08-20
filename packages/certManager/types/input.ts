@@ -449,9 +449,27 @@ export namespace acme {
          */
         export interface ChallengeSpecSolverHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface ChallengeSpecSolverHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -463,7 +481,7 @@ export namespace acme {
              */
             class?: pulumi.Input<string>;
             /**
-             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
              */
             ingressTemplate?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressIngressTemplateArgs>;
             /**
@@ -471,17 +489,17 @@ export namespace acme {
              */
             name?: pulumi.Input<string>;
             /**
-             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
              */
             podTemplate?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
 
         /**
-         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
          */
         export interface ChallengeSpecSolverHttp01IngressIngressTemplateArgs {
             /**
@@ -505,7 +523,7 @@ export namespace acme {
         }
 
         /**
-         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateArgs {
             /**
@@ -1740,9 +1758,27 @@ export namespace acme {
          */
         export interface ChallengeSpecSolverHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface ChallengeSpecSolverHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -1762,11 +1798,11 @@ export namespace acme {
              */
             name?: pulumi.Input<string>;
             /**
-             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
              */
             podTemplate?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -1796,7 +1832,7 @@ export namespace acme {
         }
 
         /**
-         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateArgs {
             /**
@@ -3031,9 +3067,27 @@ export namespace acme {
          */
         export interface ChallengeSpecSolverHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface ChallengeSpecSolverHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP.
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -3053,11 +3107,11 @@ export namespace acme {
              */
             name?: pulumi.Input<string>;
             /**
-             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
              */
             podTemplate?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -3087,7 +3141,7 @@ export namespace acme {
         }
 
         /**
-         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateArgs {
             /**
@@ -3963,7 +4017,7 @@ export namespace acme {
             /**
              * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
              */
-            acmeDNS?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AcmeDNSArgs>;
+            acmedns?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AcmednsArgs>;
             /**
              * Use the Akamai DNS zone management API to manage DNS01 challenge records.
              */
@@ -3971,11 +4025,11 @@ export namespace acme {
             /**
              * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
              */
-            azureDNS?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AzureDNSArgs>;
+            azuredns?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AzurednsArgs>;
             /**
              * Use the Google Cloud DNS API to manage DNS01 challenge records.
              */
-            cloudDNS?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01CloudDNSArgs>;
+            clouddns?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01ClouddnsArgs>;
             /**
              * Use the Cloudflare API to manage DNS01 challenge records.
              */
@@ -4005,18 +4059,18 @@ export namespace acme {
         /**
          * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
          */
-        export interface ChallengeSpecSolverDns01AcmeDNSArgs {
+        export interface ChallengeSpecSolverDns01AcmednsArgs {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            accountSecretRef: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AcmeDNSAccountSecretRefArgs>;
+            accountSecretRef: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AcmednsAccountSecretRefArgs>;
             host: pulumi.Input<string>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ChallengeSpecSolverDns01AcmeDNSAccountSecretRefArgs {
+        export interface ChallengeSpecSolverDns01AcmednsAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -4091,7 +4145,7 @@ export namespace acme {
         /**
          * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
          */
-        export interface ChallengeSpecSolverDns01AzureDNSArgs {
+        export interface ChallengeSpecSolverDns01AzurednsArgs {
             /**
              * if both this and ClientSecret are left unset MSI will be used
              */
@@ -4099,7 +4153,7 @@ export namespace acme {
             /**
              * if both this and ClientID are left unset MSI will be used
              */
-            clientSecretSecretRef?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AzureDNSClientSecretSecretRefArgs>;
+            clientSecretSecretRef?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AzurednsClientSecretSecretRefArgs>;
             environment?: pulumi.Input<string>;
             hostedZoneName?: pulumi.Input<string>;
             resourceGroupName: pulumi.Input<string>;
@@ -4113,7 +4167,7 @@ export namespace acme {
         /**
          * if both this and ClientID are left unset MSI will be used
          */
-        export interface ChallengeSpecSolverDns01AzureDNSClientSecretSecretRefArgs {
+        export interface ChallengeSpecSolverDns01AzurednsClientSecretSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -4127,7 +4181,7 @@ export namespace acme {
         /**
          * Use the Google Cloud DNS API to manage DNS01 challenge records.
          */
-        export interface ChallengeSpecSolverDns01CloudDNSArgs {
+        export interface ChallengeSpecSolverDns01ClouddnsArgs {
             /**
              * HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.
              */
@@ -4136,13 +4190,13 @@ export namespace acme {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            serviceAccountSecretRef?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01CloudDNSServiceAccountSecretRefArgs>;
+            serviceAccountSecretRef?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01ClouddnsServiceAccountSecretRefArgs>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ChallengeSpecSolverDns01CloudDNSServiceAccountSecretRefArgs {
+        export interface ChallengeSpecSolverDns01ClouddnsServiceAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -4322,9 +4376,27 @@ export namespace acme {
          */
         export interface ChallengeSpecSolverHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface ChallengeSpecSolverHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -4336,7 +4408,7 @@ export namespace acme {
              */
             class?: pulumi.Input<string>;
             /**
-             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
              */
             ingressTemplate?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressIngressTemplateArgs>;
             /**
@@ -4348,13 +4420,13 @@ export namespace acme {
              */
             podTemplate?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
 
         /**
-         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
          */
         export interface ChallengeSpecSolverHttp01IngressIngressTemplateArgs {
             /**
@@ -5339,6 +5411,10 @@ export namespace certmanager {
              */
             secretName: pulumi.Input<string>;
             /**
+             * SecretTemplate defines annotations and labels to be propagated to the Kubernetes Secret when it is created or updated. Once created, labels and annotations are not yet removed from the Secret when they are removed from the template. See https://github.com/jetstack/cert-manager/issues/4292
+             */
+            secretTemplate?: pulumi.Input<inputs.certmanager.v1.CertificateSpecSecretTemplateArgs>;
+            /**
              * Full X509 name specification (https://golang.org/pkg/crypto/x509/pkix/#Name).
              */
             subject?: pulumi.Input<inputs.certmanager.v1.CertificateSpecSubjectArgs>;
@@ -5445,7 +5521,7 @@ export namespace certmanager {
          */
         export interface CertificateSpecPrivateKeyArgs {
             /**
-             * Algorithm is the private key algorithm of the corresponding private key for this certificate. If provided, allowed values are either `RSA` or `ECDSA` If `algorithm` is specified and `size` is not provided, key size of 256 will be used for `ECDSA` key algorithm and key size of 2048 will be used for `RSA` key algorithm.
+             * Algorithm is the private key algorithm of the corresponding private key for this certificate. If provided, allowed values are either `RSA`,`Ed25519` or `ECDSA` If `algorithm` is specified and `size` is not provided, key size of 256 will be used for `ECDSA` key algorithm and key size of 2048 will be used for `RSA` key algorithm. key size is ignored when using the `Ed25519` key algorithm.
              */
             algorithm?: pulumi.Input<string>;
             /**
@@ -5457,9 +5533,23 @@ export namespace certmanager {
              */
             rotationPolicy?: pulumi.Input<string>;
             /**
-             * Size is the key bit size of the corresponding private key for this certificate. If `algorithm` is set to `RSA`, valid values are `2048`, `4096` or `8192`, and will default to `2048` if not specified. If `algorithm` is set to `ECDSA`, valid values are `256`, `384` or `521`, and will default to `256` if not specified. No other values are allowed.
+             * Size is the key bit size of the corresponding private key for this certificate. If `algorithm` is set to `RSA`, valid values are `2048`, `4096` or `8192`, and will default to `2048` if not specified. If `algorithm` is set to `ECDSA`, valid values are `256`, `384` or `521`, and will default to `256` if not specified. If `algorithm` is set to `Ed25519`, Size is ignored. No other values are allowed.
              */
             size?: pulumi.Input<number>;
+        }
+
+        /**
+         * SecretTemplate defines annotations and labels to be propagated to the Kubernetes Secret when it is created or updated. Once created, labels and annotations are not yet removed from the Secret when they are removed from the template. See https://github.com/jetstack/cert-manager/issues/4292
+         */
+        export interface CertificateSpecSecretTemplateArgs {
+            /**
+             * Annotations is a key value map to be copied to the target Kubernetes Secret.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Labels is a key value map to be copied to the target Kubernetes Secret.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         }
 
         /**
@@ -5682,7 +5772,7 @@ export namespace certmanager {
         }
 
         /**
-         * Configures an issuer to solve challenges using the specified options. Only one of HTTP01 or DNS01 may be provided.
+         * An ACMEChallengeSolver describes how to solve ACME challenges for the issuer it is part of. A selector may be provided to use different solving strategies for different DNS names. Only one of HTTP01 or DNS01 must be provided.
          */
         export interface ClusterIssuerSpecAcmeSolversArgs {
             /**
@@ -6065,9 +6155,27 @@ export namespace certmanager {
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface ClusterIssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -6079,7 +6187,7 @@ export namespace certmanager {
              */
             class?: pulumi.Input<string>;
             /**
-             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
              */
             ingressTemplate?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressIngressTemplateArgs>;
             /**
@@ -6087,17 +6195,17 @@ export namespace certmanager {
              */
             name?: pulumi.Input<string>;
             /**
-             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
 
         /**
-         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressIngressTemplateArgs {
             /**
@@ -6121,7 +6229,7 @@ export namespace certmanager {
         }
 
         /**
-         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs {
             /**
@@ -6811,7 +6919,7 @@ export namespace certmanager {
              */
             auth: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecVaultAuthArgs>;
             /**
-             * PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+             * PEM-encoded CA bundle (base64-encoded) used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
              */
             caBundle?: pulumi.Input<string>;
             /**
@@ -7171,7 +7279,7 @@ export namespace certmanager {
         }
 
         /**
-         * Configures an issuer to solve challenges using the specified options. Only one of HTTP01 or DNS01 may be provided.
+         * An ACMEChallengeSolver describes how to solve ACME challenges for the issuer it is part of. A selector may be provided to use different solving strategies for different DNS names. Only one of HTTP01 or DNS01 must be provided.
          */
         export interface IssuerSpecAcmeSolversArgs {
             /**
@@ -7554,9 +7662,27 @@ export namespace certmanager {
          */
         export interface IssuerSpecAcmeSolversHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface IssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -7568,7 +7694,7 @@ export namespace certmanager {
              */
             class?: pulumi.Input<string>;
             /**
-             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
              */
             ingressTemplate?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressIngressTemplateArgs>;
             /**
@@ -7576,17 +7702,17 @@ export namespace certmanager {
              */
             name?: pulumi.Input<string>;
             /**
-             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
 
         /**
-         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressIngressTemplateArgs {
             /**
@@ -7610,7 +7736,7 @@ export namespace certmanager {
         }
 
         /**
-         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs {
             /**
@@ -8300,7 +8426,7 @@ export namespace certmanager {
              */
             auth: pulumi.Input<inputs.certmanager.v1.IssuerSpecVaultAuthArgs>;
             /**
-             * PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+             * PEM-encoded CA bundle (base64-encoded) used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
              */
             caBundle?: pulumi.Input<string>;
             /**
@@ -8728,6 +8854,10 @@ export namespace certmanager {
              */
             secretName: pulumi.Input<string>;
             /**
+             * SecretTemplate defines annotations and labels to be propagated to the Kubernetes Secret when it is created or updated. Once created, labels and annotations are not yet removed from the Secret when they are removed from the template. See https://github.com/jetstack/cert-manager/issues/4292
+             */
+            secretTemplate?: pulumi.Input<inputs.certmanager.v1alpha2.CertificateSpecSecretTemplateArgs>;
+            /**
              * Full X509 name specification (https://golang.org/pkg/crypto/x509/pkix/#Name).
              */
             subject?: pulumi.Input<inputs.certmanager.v1alpha2.CertificateSpecSubjectArgs>;
@@ -8837,6 +8967,20 @@ export namespace certmanager {
              * RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to Never, a private key will only be generated if one does not already exist in the target `spec.secretName`. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to Always, a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.
              */
             rotationPolicy?: pulumi.Input<string>;
+        }
+
+        /**
+         * SecretTemplate defines annotations and labels to be propagated to the Kubernetes Secret when it is created or updated. Once created, labels and annotations are not yet removed from the Secret when they are removed from the template. See https://github.com/jetstack/cert-manager/issues/4292
+         */
+        export interface CertificateSpecSecretTemplateArgs {
+            /**
+             * Annotations is a key value map to be copied to the target Kubernetes Secret.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Labels is a key value map to be copied to the target Kubernetes Secret.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         }
 
         /**
@@ -9438,9 +9582,27 @@ export namespace certmanager {
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface ClusterIssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -9460,11 +9622,11 @@ export namespace certmanager {
              */
             name?: pulumi.Input<string>;
             /**
-             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -9494,7 +9656,7 @@ export namespace certmanager {
         }
 
         /**
-         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs {
             /**
@@ -10184,7 +10346,7 @@ export namespace certmanager {
              */
             auth: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecVaultAuthArgs>;
             /**
-             * PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+             * PEM-encoded CA bundle (base64-encoded) used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
              */
             caBundle?: pulumi.Input<string>;
             /**
@@ -10927,9 +11089,27 @@ export namespace certmanager {
          */
         export interface IssuerSpecAcmeSolversHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface IssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -10949,11 +11129,11 @@ export namespace certmanager {
              */
             name?: pulumi.Input<string>;
             /**
-             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -10983,7 +11163,7 @@ export namespace certmanager {
         }
 
         /**
-         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs {
             /**
@@ -11673,7 +11853,7 @@ export namespace certmanager {
              */
             auth: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecVaultAuthArgs>;
             /**
-             * PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+             * PEM-encoded CA bundle (base64-encoded) used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
              */
             caBundle?: pulumi.Input<string>;
             /**
@@ -12097,6 +12277,10 @@ export namespace certmanager {
              */
             secretName: pulumi.Input<string>;
             /**
+             * SecretTemplate defines annotations and labels to be propagated to the Kubernetes Secret when it is created or updated. Once created, labels and annotations are not yet removed from the Secret when they are removed from the template. See https://github.com/jetstack/cert-manager/issues/4292
+             */
+            secretTemplate?: pulumi.Input<inputs.certmanager.v1alpha3.CertificateSpecSecretTemplateArgs>;
+            /**
              * Full X509 name specification (https://golang.org/pkg/crypto/x509/pkix/#Name).
              */
             subject?: pulumi.Input<inputs.certmanager.v1alpha3.CertificateSpecSubjectArgs>;
@@ -12206,6 +12390,20 @@ export namespace certmanager {
              * RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to Never, a private key will only be generated if one does not already exist in the target `spec.secretName`. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to Always, a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.
              */
             rotationPolicy?: pulumi.Input<string>;
+        }
+
+        /**
+         * SecretTemplate defines annotations and labels to be propagated to the Kubernetes Secret when it is created or updated. Once created, labels and annotations are not yet removed from the Secret when they are removed from the template. See https://github.com/jetstack/cert-manager/issues/4292
+         */
+        export interface CertificateSpecSecretTemplateArgs {
+            /**
+             * Annotations is a key value map to be copied to the target Kubernetes Secret.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Labels is a key value map to be copied to the target Kubernetes Secret.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         }
 
         /**
@@ -12811,9 +13009,27 @@ export namespace certmanager {
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface ClusterIssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP.
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -12833,11 +13049,11 @@ export namespace certmanager {
              */
             name?: pulumi.Input<string>;
             /**
-             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -12867,7 +13083,7 @@ export namespace certmanager {
         }
 
         /**
-         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs {
             /**
@@ -13557,7 +13773,7 @@ export namespace certmanager {
              */
             auth: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecVaultAuthArgs>;
             /**
-             * PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+             * PEM-encoded CA bundle (base64-encoded) used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
              */
             caBundle?: pulumi.Input<string>;
             /**
@@ -14300,9 +14516,27 @@ export namespace certmanager {
          */
         export interface IssuerSpecAcmeSolversHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface IssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP.
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -14322,11 +14556,11 @@ export namespace certmanager {
              */
             name?: pulumi.Input<string>;
             /**
-             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+             * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -14356,7 +14590,7 @@ export namespace certmanager {
         }
 
         /**
-         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges
+         * Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs {
             /**
@@ -15046,7 +15280,7 @@ export namespace certmanager {
              */
             auth: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecVaultAuthArgs>;
             /**
-             * PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+             * PEM-encoded CA bundle (base64-encoded) used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
              */
             caBundle?: pulumi.Input<string>;
             /**
@@ -15458,6 +15692,10 @@ export namespace certmanager {
              */
             secretName: pulumi.Input<string>;
             /**
+             * SecretTemplate defines annotations and labels to be propagated to the Kubernetes Secret when it is created or updated. Once created, labels and annotations are not yet removed from the Secret when they are removed from the template. See https://github.com/jetstack/cert-manager/issues/4292
+             */
+            secretTemplate?: pulumi.Input<inputs.certmanager.v1beta1.CertificateSpecSecretTemplateArgs>;
+            /**
              * Full X509 name specification (https://golang.org/pkg/crypto/x509/pkix/#Name).
              */
             subject?: pulumi.Input<inputs.certmanager.v1beta1.CertificateSpecSubjectArgs>;
@@ -15579,6 +15817,20 @@ export namespace certmanager {
              * Size is the key bit size of the corresponding private key for this certificate. If `algorithm` is set to `RSA`, valid values are `2048`, `4096` or `8192`, and will default to `2048` if not specified. If `algorithm` is set to `ECDSA`, valid values are `256`, `384` or `521`, and will default to `256` if not specified. No other values are allowed.
              */
             size?: pulumi.Input<number>;
+        }
+
+        /**
+         * SecretTemplate defines annotations and labels to be propagated to the Kubernetes Secret when it is created or updated. Once created, labels and annotations are not yet removed from the Secret when they are removed from the template. See https://github.com/jetstack/cert-manager/issues/4292
+         */
+        export interface CertificateSpecSecretTemplateArgs {
+            /**
+             * Annotations is a key value map to be copied to the target Kubernetes Secret.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Labels is a key value map to be copied to the target Kubernetes Secret.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         }
 
         /**
@@ -15825,7 +16077,7 @@ export namespace certmanager {
             /**
              * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
              */
-            acmeDNS?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmeDNSArgs>;
+            acmedns?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmednsArgs>;
             /**
              * Use the Akamai DNS zone management API to manage DNS01 challenge records.
              */
@@ -15833,11 +16085,11 @@ export namespace certmanager {
             /**
              * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
              */
-            azureDNS?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzureDNSArgs>;
+            azuredns?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzurednsArgs>;
             /**
              * Use the Google Cloud DNS API to manage DNS01 challenge records.
              */
-            cloudDNS?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01CloudDNSArgs>;
+            clouddns?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01ClouddnsArgs>;
             /**
              * Use the Cloudflare API to manage DNS01 challenge records.
              */
@@ -15867,18 +16119,18 @@ export namespace certmanager {
         /**
          * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01AcmeDNSArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01AcmednsArgs {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            accountSecretRef: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRefArgs>;
+            accountSecretRef: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmednsAccountSecretRefArgs>;
             host: pulumi.Input<string>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRefArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01AcmednsAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -15953,7 +16205,7 @@ export namespace certmanager {
         /**
          * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01AzureDNSArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01AzurednsArgs {
             /**
              * if both this and ClientSecret are left unset MSI will be used
              */
@@ -15961,7 +16213,7 @@ export namespace certmanager {
             /**
              * if both this and ClientID are left unset MSI will be used
              */
-            clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs>;
+            clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs>;
             environment?: pulumi.Input<string>;
             hostedZoneName?: pulumi.Input<string>;
             resourceGroupName: pulumi.Input<string>;
@@ -15975,7 +16227,7 @@ export namespace certmanager {
         /**
          * if both this and ClientID are left unset MSI will be used
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -15989,7 +16241,7 @@ export namespace certmanager {
         /**
          * Use the Google Cloud DNS API to manage DNS01 challenge records.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01CloudDNSArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01ClouddnsArgs {
             /**
              * HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.
              */
@@ -15998,13 +16250,13 @@ export namespace certmanager {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            serviceAccountSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRefArgs>;
+            serviceAccountSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRefArgs>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRefArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -16184,9 +16436,27 @@ export namespace certmanager {
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface ClusterIssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -16198,7 +16468,7 @@ export namespace certmanager {
              */
             class?: pulumi.Input<string>;
             /**
-             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
              */
             ingressTemplate?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressIngressTemplateArgs>;
             /**
@@ -16210,13 +16480,13 @@ export namespace certmanager {
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
 
         /**
-         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressIngressTemplateArgs {
             /**
@@ -16930,7 +17200,7 @@ export namespace certmanager {
              */
             auth: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecVaultAuthArgs>;
             /**
-             * PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+             * PEM-encoded CA bundle (base64-encoded) used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
              */
             caBundle?: pulumi.Input<string>;
             /**
@@ -17314,7 +17584,7 @@ export namespace certmanager {
             /**
              * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
              */
-            acmeDNS?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmeDNSArgs>;
+            acmedns?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmednsArgs>;
             /**
              * Use the Akamai DNS zone management API to manage DNS01 challenge records.
              */
@@ -17322,11 +17592,11 @@ export namespace certmanager {
             /**
              * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
              */
-            azureDNS?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzureDNSArgs>;
+            azuredns?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzurednsArgs>;
             /**
              * Use the Google Cloud DNS API to manage DNS01 challenge records.
              */
-            cloudDNS?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01CloudDNSArgs>;
+            clouddns?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01ClouddnsArgs>;
             /**
              * Use the Cloudflare API to manage DNS01 challenge records.
              */
@@ -17356,18 +17626,18 @@ export namespace certmanager {
         /**
          * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
          */
-        export interface IssuerSpecAcmeSolversDns01AcmeDNSArgs {
+        export interface IssuerSpecAcmeSolversDns01AcmednsArgs {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            accountSecretRef: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRefArgs>;
+            accountSecretRef: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmednsAccountSecretRefArgs>;
             host: pulumi.Input<string>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface IssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRefArgs {
+        export interface IssuerSpecAcmeSolversDns01AcmednsAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -17442,7 +17712,7 @@ export namespace certmanager {
         /**
          * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
          */
-        export interface IssuerSpecAcmeSolversDns01AzureDNSArgs {
+        export interface IssuerSpecAcmeSolversDns01AzurednsArgs {
             /**
              * if both this and ClientSecret are left unset MSI will be used
              */
@@ -17450,7 +17720,7 @@ export namespace certmanager {
             /**
              * if both this and ClientID are left unset MSI will be used
              */
-            clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs>;
+            clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs>;
             environment?: pulumi.Input<string>;
             hostedZoneName?: pulumi.Input<string>;
             resourceGroupName: pulumi.Input<string>;
@@ -17464,7 +17734,7 @@ export namespace certmanager {
         /**
          * if both this and ClientID are left unset MSI will be used
          */
-        export interface IssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs {
+        export interface IssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -17478,7 +17748,7 @@ export namespace certmanager {
         /**
          * Use the Google Cloud DNS API to manage DNS01 challenge records.
          */
-        export interface IssuerSpecAcmeSolversDns01CloudDNSArgs {
+        export interface IssuerSpecAcmeSolversDns01ClouddnsArgs {
             /**
              * HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.
              */
@@ -17487,13 +17757,13 @@ export namespace certmanager {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            serviceAccountSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRefArgs>;
+            serviceAccountSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRefArgs>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface IssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRefArgs {
+        export interface IssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -17673,9 +17943,27 @@ export namespace certmanager {
          */
         export interface IssuerSpecAcmeSolversHttp01Args {
             /**
+             * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+             */
+            gatewayHTTPRoute?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs>;
+            /**
              * The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.
              */
             ingress?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressArgs>;
+        }
+
+        /**
+         * The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.
+         */
+        export interface IssuerSpecAcmeSolversHttp01GatewayHTTPRouteArgs {
+            /**
+             * The labels that cert-manager will use when creating the temporary HTTPRoute needed for solving the HTTP-01 challenge. These labels must match the label selector of at least one Gateway.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             */
+            serviceType?: pulumi.Input<string>;
         }
 
         /**
@@ -17687,7 +17975,7 @@ export namespace certmanager {
              */
             class?: pulumi.Input<string>;
             /**
-             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+             * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
              */
             ingressTemplate?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressIngressTemplateArgs>;
             /**
@@ -17699,13 +17987,13 @@ export namespace certmanager {
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
              */
             serviceType?: pulumi.Input<string>;
         }
 
         /**
-         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges
+         * Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressIngressTemplateArgs {
             /**
@@ -18419,7 +18707,7 @@ export namespace certmanager {
              */
             auth: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecVaultAuthArgs>;
             /**
-             * PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+             * PEM-encoded CA bundle (base64-encoded) used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
              */
             caBundle?: pulumi.Input<string>;
             /**
