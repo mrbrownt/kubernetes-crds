@@ -467,7 +467,7 @@ export namespace acme {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -493,7 +493,7 @@ export namespace acme {
              */
             podTemplate?: outputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -1776,7 +1776,7 @@ export namespace acme {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -1802,7 +1802,7 @@ export namespace acme {
              */
             podTemplate?: outputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -3085,7 +3085,7 @@ export namespace acme {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP.
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -3111,7 +3111,7 @@ export namespace acme {
              */
             podTemplate?: outputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -4017,7 +4017,7 @@ export namespace acme {
             /**
              * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
              */
-            acmedns?: outputs.acme.v1beta1.ChallengeSpecSolverDns01Acmedns;
+            acmeDNS?: outputs.acme.v1beta1.ChallengeSpecSolverDns01AcmeDNS;
             /**
              * Use the Akamai DNS zone management API to manage DNS01 challenge records.
              */
@@ -4025,11 +4025,11 @@ export namespace acme {
             /**
              * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
              */
-            azuredns?: outputs.acme.v1beta1.ChallengeSpecSolverDns01Azuredns;
+            azureDNS?: outputs.acme.v1beta1.ChallengeSpecSolverDns01AzureDNS;
             /**
              * Use the Google Cloud DNS API to manage DNS01 challenge records.
              */
-            clouddns?: outputs.acme.v1beta1.ChallengeSpecSolverDns01Clouddns;
+            cloudDNS?: outputs.acme.v1beta1.ChallengeSpecSolverDns01CloudDNS;
             /**
              * Use the Cloudflare API to manage DNS01 challenge records.
              */
@@ -4059,18 +4059,18 @@ export namespace acme {
         /**
          * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
          */
-        export interface ChallengeSpecSolverDns01Acmedns {
+        export interface ChallengeSpecSolverDns01AcmeDNS {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            accountSecretRef: outputs.acme.v1beta1.ChallengeSpecSolverDns01AcmednsAccountSecretRef;
+            accountSecretRef: outputs.acme.v1beta1.ChallengeSpecSolverDns01AcmeDNSAccountSecretRef;
             host: string;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ChallengeSpecSolverDns01AcmednsAccountSecretRef {
+        export interface ChallengeSpecSolverDns01AcmeDNSAccountSecretRef {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -4145,7 +4145,7 @@ export namespace acme {
         /**
          * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
          */
-        export interface ChallengeSpecSolverDns01Azuredns {
+        export interface ChallengeSpecSolverDns01AzureDNS {
             /**
              * if both this and ClientSecret are left unset MSI will be used
              */
@@ -4153,7 +4153,7 @@ export namespace acme {
             /**
              * if both this and ClientID are left unset MSI will be used
              */
-            clientSecretSecretRef?: outputs.acme.v1beta1.ChallengeSpecSolverDns01AzurednsClientSecretSecretRef;
+            clientSecretSecretRef?: outputs.acme.v1beta1.ChallengeSpecSolverDns01AzureDNSClientSecretSecretRef;
             environment?: string;
             hostedZoneName?: string;
             resourceGroupName: string;
@@ -4167,7 +4167,7 @@ export namespace acme {
         /**
          * if both this and ClientID are left unset MSI will be used
          */
-        export interface ChallengeSpecSolverDns01AzurednsClientSecretSecretRef {
+        export interface ChallengeSpecSolverDns01AzureDNSClientSecretSecretRef {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -4181,7 +4181,7 @@ export namespace acme {
         /**
          * Use the Google Cloud DNS API to manage DNS01 challenge records.
          */
-        export interface ChallengeSpecSolverDns01Clouddns {
+        export interface ChallengeSpecSolverDns01CloudDNS {
             /**
              * HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.
              */
@@ -4190,13 +4190,13 @@ export namespace acme {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            serviceAccountSecretRef?: outputs.acme.v1beta1.ChallengeSpecSolverDns01ClouddnsServiceAccountSecretRef;
+            serviceAccountSecretRef?: outputs.acme.v1beta1.ChallengeSpecSolverDns01CloudDNSServiceAccountSecretRef;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ChallengeSpecSolverDns01ClouddnsServiceAccountSecretRef {
+        export interface ChallengeSpecSolverDns01CloudDNSServiceAccountSecretRef {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -4394,7 +4394,7 @@ export namespace acme {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -4420,7 +4420,7 @@ export namespace acme {
              */
             podTemplate?: outputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -6173,7 +6173,7 @@ export namespace certmanager {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -6199,7 +6199,7 @@ export namespace certmanager {
              */
             podTemplate?: outputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -7680,7 +7680,7 @@ export namespace certmanager {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -7706,7 +7706,7 @@ export namespace certmanager {
              */
             podTemplate?: outputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -9600,7 +9600,7 @@ export namespace certmanager {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -9626,7 +9626,7 @@ export namespace certmanager {
              */
             podTemplate?: outputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -11107,7 +11107,7 @@ export namespace certmanager {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -11133,7 +11133,7 @@ export namespace certmanager {
              */
             podTemplate?: outputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -13027,7 +13027,7 @@ export namespace certmanager {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP.
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -13053,7 +13053,7 @@ export namespace certmanager {
              */
             podTemplate?: outputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -14534,7 +14534,7 @@ export namespace certmanager {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP.
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -14560,7 +14560,7 @@ export namespace certmanager {
              */
             podTemplate?: outputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -16077,7 +16077,7 @@ export namespace certmanager {
             /**
              * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
              */
-            acmedns?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01Acmedns;
+            acmeDNS?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmeDNS;
             /**
              * Use the Akamai DNS zone management API to manage DNS01 challenge records.
              */
@@ -16085,11 +16085,11 @@ export namespace certmanager {
             /**
              * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
              */
-            azuredns?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01Azuredns;
+            azureDNS?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzureDNS;
             /**
              * Use the Google Cloud DNS API to manage DNS01 challenge records.
              */
-            clouddns?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01Clouddns;
+            cloudDNS?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01CloudDNS;
             /**
              * Use the Cloudflare API to manage DNS01 challenge records.
              */
@@ -16119,18 +16119,18 @@ export namespace certmanager {
         /**
          * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01Acmedns {
+        export interface ClusterIssuerSpecAcmeSolversDns01AcmeDNS {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            accountSecretRef: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmednsAccountSecretRef;
+            accountSecretRef: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRef;
             host: string;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01AcmednsAccountSecretRef {
+        export interface ClusterIssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRef {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -16205,7 +16205,7 @@ export namespace certmanager {
         /**
          * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01Azuredns {
+        export interface ClusterIssuerSpecAcmeSolversDns01AzureDNS {
             /**
              * if both this and ClientSecret are left unset MSI will be used
              */
@@ -16213,7 +16213,7 @@ export namespace certmanager {
             /**
              * if both this and ClientID are left unset MSI will be used
              */
-            clientSecretSecretRef?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRef;
+            clientSecretSecretRef?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRef;
             environment?: string;
             hostedZoneName?: string;
             resourceGroupName: string;
@@ -16227,7 +16227,7 @@ export namespace certmanager {
         /**
          * if both this and ClientID are left unset MSI will be used
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRef {
+        export interface ClusterIssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRef {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -16241,7 +16241,7 @@ export namespace certmanager {
         /**
          * Use the Google Cloud DNS API to manage DNS01 challenge records.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01Clouddns {
+        export interface ClusterIssuerSpecAcmeSolversDns01CloudDNS {
             /**
              * HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.
              */
@@ -16250,13 +16250,13 @@ export namespace certmanager {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            serviceAccountSecretRef?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRef;
+            serviceAccountSecretRef?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRef;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRef {
+        export interface ClusterIssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRef {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -16454,7 +16454,7 @@ export namespace certmanager {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -16480,7 +16480,7 @@ export namespace certmanager {
              */
             podTemplate?: outputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -17584,7 +17584,7 @@ export namespace certmanager {
             /**
              * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
              */
-            acmedns?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01Acmedns;
+            acmeDNS?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmeDNS;
             /**
              * Use the Akamai DNS zone management API to manage DNS01 challenge records.
              */
@@ -17592,11 +17592,11 @@ export namespace certmanager {
             /**
              * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
              */
-            azuredns?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01Azuredns;
+            azureDNS?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzureDNS;
             /**
              * Use the Google Cloud DNS API to manage DNS01 challenge records.
              */
-            clouddns?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01Clouddns;
+            cloudDNS?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01CloudDNS;
             /**
              * Use the Cloudflare API to manage DNS01 challenge records.
              */
@@ -17626,18 +17626,18 @@ export namespace certmanager {
         /**
          * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
          */
-        export interface IssuerSpecAcmeSolversDns01Acmedns {
+        export interface IssuerSpecAcmeSolversDns01AcmeDNS {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            accountSecretRef: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmednsAccountSecretRef;
+            accountSecretRef: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRef;
             host: string;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface IssuerSpecAcmeSolversDns01AcmednsAccountSecretRef {
+        export interface IssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRef {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -17712,7 +17712,7 @@ export namespace certmanager {
         /**
          * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
          */
-        export interface IssuerSpecAcmeSolversDns01Azuredns {
+        export interface IssuerSpecAcmeSolversDns01AzureDNS {
             /**
              * if both this and ClientSecret are left unset MSI will be used
              */
@@ -17720,7 +17720,7 @@ export namespace certmanager {
             /**
              * if both this and ClientID are left unset MSI will be used
              */
-            clientSecretSecretRef?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRef;
+            clientSecretSecretRef?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRef;
             environment?: string;
             hostedZoneName?: string;
             resourceGroupName: string;
@@ -17734,7 +17734,7 @@ export namespace certmanager {
         /**
          * if both this and ClientID are left unset MSI will be used
          */
-        export interface IssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRef {
+        export interface IssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRef {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -17748,7 +17748,7 @@ export namespace certmanager {
         /**
          * Use the Google Cloud DNS API to manage DNS01 challenge records.
          */
-        export interface IssuerSpecAcmeSolversDns01Clouddns {
+        export interface IssuerSpecAcmeSolversDns01CloudDNS {
             /**
              * HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.
              */
@@ -17757,13 +17757,13 @@ export namespace certmanager {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            serviceAccountSecretRef?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRef;
+            serviceAccountSecretRef?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRef;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface IssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRef {
+        export interface IssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRef {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -17961,7 +17961,7 @@ export namespace certmanager {
              */
             labels?: {[key: string]: string};
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }
@@ -17987,7 +17987,7 @@ export namespace certmanager {
              */
             podTemplate?: outputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplate;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: string;
         }

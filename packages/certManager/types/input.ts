@@ -467,7 +467,7 @@ export namespace acme {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -493,7 +493,7 @@ export namespace acme {
              */
             podTemplate?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -1776,7 +1776,7 @@ export namespace acme {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -1802,7 +1802,7 @@ export namespace acme {
              */
             podTemplate?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -3085,7 +3085,7 @@ export namespace acme {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP.
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -3111,7 +3111,7 @@ export namespace acme {
              */
             podTemplate?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -4017,7 +4017,7 @@ export namespace acme {
             /**
              * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
              */
-            acmedns?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AcmednsArgs>;
+            acmeDNS?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AcmeDNSArgs>;
             /**
              * Use the Akamai DNS zone management API to manage DNS01 challenge records.
              */
@@ -4025,11 +4025,11 @@ export namespace acme {
             /**
              * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
              */
-            azuredns?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AzurednsArgs>;
+            azureDNS?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AzureDNSArgs>;
             /**
              * Use the Google Cloud DNS API to manage DNS01 challenge records.
              */
-            clouddns?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01ClouddnsArgs>;
+            cloudDNS?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01CloudDNSArgs>;
             /**
              * Use the Cloudflare API to manage DNS01 challenge records.
              */
@@ -4059,18 +4059,18 @@ export namespace acme {
         /**
          * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
          */
-        export interface ChallengeSpecSolverDns01AcmednsArgs {
+        export interface ChallengeSpecSolverDns01AcmeDNSArgs {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            accountSecretRef: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AcmednsAccountSecretRefArgs>;
+            accountSecretRef: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AcmeDNSAccountSecretRefArgs>;
             host: pulumi.Input<string>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ChallengeSpecSolverDns01AcmednsAccountSecretRefArgs {
+        export interface ChallengeSpecSolverDns01AcmeDNSAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -4145,7 +4145,7 @@ export namespace acme {
         /**
          * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
          */
-        export interface ChallengeSpecSolverDns01AzurednsArgs {
+        export interface ChallengeSpecSolverDns01AzureDNSArgs {
             /**
              * if both this and ClientSecret are left unset MSI will be used
              */
@@ -4153,7 +4153,7 @@ export namespace acme {
             /**
              * if both this and ClientID are left unset MSI will be used
              */
-            clientSecretSecretRef?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AzurednsClientSecretSecretRefArgs>;
+            clientSecretSecretRef?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AzureDNSClientSecretSecretRefArgs>;
             environment?: pulumi.Input<string>;
             hostedZoneName?: pulumi.Input<string>;
             resourceGroupName: pulumi.Input<string>;
@@ -4167,7 +4167,7 @@ export namespace acme {
         /**
          * if both this and ClientID are left unset MSI will be used
          */
-        export interface ChallengeSpecSolverDns01AzurednsClientSecretSecretRefArgs {
+        export interface ChallengeSpecSolverDns01AzureDNSClientSecretSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -4181,7 +4181,7 @@ export namespace acme {
         /**
          * Use the Google Cloud DNS API to manage DNS01 challenge records.
          */
-        export interface ChallengeSpecSolverDns01ClouddnsArgs {
+        export interface ChallengeSpecSolverDns01CloudDNSArgs {
             /**
              * HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.
              */
@@ -4190,13 +4190,13 @@ export namespace acme {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            serviceAccountSecretRef?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01ClouddnsServiceAccountSecretRefArgs>;
+            serviceAccountSecretRef?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01CloudDNSServiceAccountSecretRefArgs>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ChallengeSpecSolverDns01ClouddnsServiceAccountSecretRefArgs {
+        export interface ChallengeSpecSolverDns01CloudDNSServiceAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -4394,7 +4394,7 @@ export namespace acme {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -4420,7 +4420,7 @@ export namespace acme {
              */
             podTemplate?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -6173,7 +6173,7 @@ export namespace certmanager {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -6199,7 +6199,7 @@ export namespace certmanager {
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -7680,7 +7680,7 @@ export namespace certmanager {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -7706,7 +7706,7 @@ export namespace certmanager {
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -9600,7 +9600,7 @@ export namespace certmanager {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -9626,7 +9626,7 @@ export namespace certmanager {
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -11107,7 +11107,7 @@ export namespace certmanager {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -11133,7 +11133,7 @@ export namespace certmanager {
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -13027,7 +13027,7 @@ export namespace certmanager {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP.
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -13053,7 +13053,7 @@ export namespace certmanager {
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -14534,7 +14534,7 @@ export namespace certmanager {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP.
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -14560,7 +14560,7 @@ export namespace certmanager {
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -16077,7 +16077,7 @@ export namespace certmanager {
             /**
              * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
              */
-            acmedns?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmednsArgs>;
+            acmeDNS?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmeDNSArgs>;
             /**
              * Use the Akamai DNS zone management API to manage DNS01 challenge records.
              */
@@ -16085,11 +16085,11 @@ export namespace certmanager {
             /**
              * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
              */
-            azuredns?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzurednsArgs>;
+            azureDNS?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzureDNSArgs>;
             /**
              * Use the Google Cloud DNS API to manage DNS01 challenge records.
              */
-            clouddns?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01ClouddnsArgs>;
+            cloudDNS?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01CloudDNSArgs>;
             /**
              * Use the Cloudflare API to manage DNS01 challenge records.
              */
@@ -16119,18 +16119,18 @@ export namespace certmanager {
         /**
          * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01AcmednsArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01AcmeDNSArgs {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            accountSecretRef: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmednsAccountSecretRefArgs>;
+            accountSecretRef: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRefArgs>;
             host: pulumi.Input<string>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01AcmednsAccountSecretRefArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -16205,7 +16205,7 @@ export namespace certmanager {
         /**
          * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01AzurednsArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01AzureDNSArgs {
             /**
              * if both this and ClientSecret are left unset MSI will be used
              */
@@ -16213,7 +16213,7 @@ export namespace certmanager {
             /**
              * if both this and ClientID are left unset MSI will be used
              */
-            clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs>;
+            clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs>;
             environment?: pulumi.Input<string>;
             hostedZoneName?: pulumi.Input<string>;
             resourceGroupName: pulumi.Input<string>;
@@ -16227,7 +16227,7 @@ export namespace certmanager {
         /**
          * if both this and ClientID are left unset MSI will be used
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -16241,7 +16241,7 @@ export namespace certmanager {
         /**
          * Use the Google Cloud DNS API to manage DNS01 challenge records.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01ClouddnsArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01CloudDNSArgs {
             /**
              * HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.
              */
@@ -16250,13 +16250,13 @@ export namespace certmanager {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            serviceAccountSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRefArgs>;
+            serviceAccountSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRefArgs>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface ClusterIssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRefArgs {
+        export interface ClusterIssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -16454,7 +16454,7 @@ export namespace certmanager {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -16480,7 +16480,7 @@ export namespace certmanager {
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -17584,7 +17584,7 @@ export namespace certmanager {
             /**
              * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
              */
-            acmedns?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmednsArgs>;
+            acmeDNS?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmeDNSArgs>;
             /**
              * Use the Akamai DNS zone management API to manage DNS01 challenge records.
              */
@@ -17592,11 +17592,11 @@ export namespace certmanager {
             /**
              * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
              */
-            azuredns?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzurednsArgs>;
+            azureDNS?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzureDNSArgs>;
             /**
              * Use the Google Cloud DNS API to manage DNS01 challenge records.
              */
-            clouddns?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01ClouddnsArgs>;
+            cloudDNS?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01CloudDNSArgs>;
             /**
              * Use the Cloudflare API to manage DNS01 challenge records.
              */
@@ -17626,18 +17626,18 @@ export namespace certmanager {
         /**
          * Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.
          */
-        export interface IssuerSpecAcmeSolversDns01AcmednsArgs {
+        export interface IssuerSpecAcmeSolversDns01AcmeDNSArgs {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            accountSecretRef: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmednsAccountSecretRefArgs>;
+            accountSecretRef: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRefArgs>;
             host: pulumi.Input<string>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface IssuerSpecAcmeSolversDns01AcmednsAccountSecretRefArgs {
+        export interface IssuerSpecAcmeSolversDns01AcmeDNSAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -17712,7 +17712,7 @@ export namespace certmanager {
         /**
          * Use the Microsoft Azure DNS API to manage DNS01 challenge records.
          */
-        export interface IssuerSpecAcmeSolversDns01AzurednsArgs {
+        export interface IssuerSpecAcmeSolversDns01AzureDNSArgs {
             /**
              * if both this and ClientSecret are left unset MSI will be used
              */
@@ -17720,7 +17720,7 @@ export namespace certmanager {
             /**
              * if both this and ClientID are left unset MSI will be used
              */
-            clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs>;
+            clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs>;
             environment?: pulumi.Input<string>;
             hostedZoneName?: pulumi.Input<string>;
             resourceGroupName: pulumi.Input<string>;
@@ -17734,7 +17734,7 @@ export namespace certmanager {
         /**
          * if both this and ClientID are left unset MSI will be used
          */
-        export interface IssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs {
+        export interface IssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -17748,7 +17748,7 @@ export namespace certmanager {
         /**
          * Use the Google Cloud DNS API to manage DNS01 challenge records.
          */
-        export interface IssuerSpecAcmeSolversDns01ClouddnsArgs {
+        export interface IssuerSpecAcmeSolversDns01CloudDNSArgs {
             /**
              * HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.
              */
@@ -17757,13 +17757,13 @@ export namespace certmanager {
             /**
              * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
              */
-            serviceAccountSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRefArgs>;
+            serviceAccountSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRefArgs>;
         }
 
         /**
          * A reference to a specific 'key' within a Secret resource. In some instances, `key` is a required field.
          */
-        export interface IssuerSpecAcmeSolversDns01ClouddnsServiceAccountSecretRefArgs {
+        export interface IssuerSpecAcmeSolversDns01CloudDNSServiceAccountSecretRefArgs {
             /**
              * The key of the entry in the Secret resource's `data` field to be used. Some instances of this field may be defaulted, in others it may be required.
              */
@@ -17961,7 +17961,7 @@ export namespace certmanager {
              */
             labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
@@ -17987,7 +17987,7 @@ export namespace certmanager {
              */
             podTemplate?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplateArgs>;
             /**
-             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP (default).
+             * Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.
              */
             serviceType?: pulumi.Input<string>;
         }
