@@ -227,9 +227,25 @@ export namespace acme {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverDns01AzureDNSClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverDns01AzureDNSManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -249,6 +265,20 @@ export namespace acme {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface ChallengeSpecSolverDns01AzureDNSManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -769,7 +799,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -815,7 +845,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -855,7 +885,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -901,7 +931,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -969,7 +999,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -1015,7 +1045,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -1055,7 +1085,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -1101,7 +1131,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -1536,9 +1566,25 @@ export namespace acme {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverDns01AzurednsClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverDns01AzurednsManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -1558,6 +1604,20 @@ export namespace acme {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface ChallengeSpecSolverDns01AzurednsManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -2078,7 +2138,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -2124,7 +2184,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -2164,7 +2224,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -2210,7 +2270,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -2278,7 +2338,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -2324,7 +2384,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -2364,7 +2424,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1alpha2.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -2410,7 +2470,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -2845,9 +2905,25 @@ export namespace acme {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverDns01AzurednsClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverDns01AzurednsManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -2867,6 +2943,20 @@ export namespace acme {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface ChallengeSpecSolverDns01AzurednsManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -3387,7 +3477,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -3433,7 +3523,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -3473,7 +3563,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -3519,7 +3609,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -3587,7 +3677,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -3633,7 +3723,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -3673,7 +3763,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1alpha3.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -3719,7 +3809,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -4154,9 +4244,25 @@ export namespace acme {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AzureDNSClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverDns01AzureDNSManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -4176,6 +4282,20 @@ export namespace acme {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface ChallengeSpecSolverDns01AzureDNSManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -4696,7 +4816,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -4742,7 +4862,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -4782,7 +4902,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -4828,7 +4948,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -4896,7 +5016,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -4942,7 +5062,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -4982,7 +5102,7 @@ export namespace acme {
              */
             labelSelector?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.acme.v1beta1.ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -5028,7 +5148,7 @@ export namespace acme {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ChallengeSpecSolverHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -5933,9 +6053,25 @@ export namespace certmanager {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversDns01AzureDNSManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -5955,6 +6091,20 @@ export namespace certmanager {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface ClusterIssuerSpecAcmeSolversDns01AzureDNSManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -6475,7 +6625,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -6521,7 +6671,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -6561,7 +6711,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -6607,7 +6757,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -6675,7 +6825,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -6721,7 +6871,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -6761,7 +6911,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -6807,7 +6957,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -7440,9 +7590,25 @@ export namespace certmanager {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversDns01AzureDNSManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -7462,6 +7628,20 @@ export namespace certmanager {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface IssuerSpecAcmeSolversDns01AzureDNSManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -7982,7 +8162,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -8028,7 +8208,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -8068,7 +8248,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -8114,7 +8294,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -8182,7 +8362,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -8228,7 +8408,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -8268,7 +8448,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -8314,7 +8494,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -9360,9 +9540,25 @@ export namespace certmanager {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversDns01AzurednsManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -9382,6 +9578,20 @@ export namespace certmanager {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface ClusterIssuerSpecAcmeSolversDns01AzurednsManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -9902,7 +10112,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -9948,7 +10158,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -9988,7 +10198,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -10034,7 +10244,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -10102,7 +10312,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -10148,7 +10358,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -10188,7 +10398,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha2.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -10234,7 +10444,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -10867,9 +11077,25 @@ export namespace certmanager {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversDns01AzurednsManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -10889,6 +11115,20 @@ export namespace certmanager {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface IssuerSpecAcmeSolversDns01AzurednsManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -11409,7 +11649,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -11455,7 +11695,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -11495,7 +11735,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -11541,7 +11781,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -11609,7 +11849,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -11655,7 +11895,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -11695,7 +11935,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha2.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -11741,7 +11981,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -12787,9 +13027,25 @@ export namespace certmanager {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversDns01AzurednsManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -12809,6 +13065,20 @@ export namespace certmanager {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface ClusterIssuerSpecAcmeSolversDns01AzurednsManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -13329,7 +13599,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -13375,7 +13645,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -13415,7 +13685,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -13461,7 +13731,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -13529,7 +13799,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -13575,7 +13845,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -13615,7 +13885,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha3.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -13661,7 +13931,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -14294,9 +14564,25 @@ export namespace certmanager {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversDns01AzurednsClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversDns01AzurednsManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -14316,6 +14602,20 @@ export namespace certmanager {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface IssuerSpecAcmeSolversDns01AzurednsManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -14836,7 +15136,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -14882,7 +15182,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -14922,7 +15222,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -14968,7 +15268,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -15036,7 +15336,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -15082,7 +15382,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -15122,7 +15422,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1alpha3.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -15168,7 +15468,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -16214,9 +16514,25 @@ export namespace certmanager {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversDns01AzureDNSManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -16236,6 +16552,20 @@ export namespace certmanager {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface ClusterIssuerSpecAcmeSolversDns01AzureDNSManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -16756,7 +17086,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -16802,7 +17132,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -16842,7 +17172,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -16888,7 +17218,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -16956,7 +17286,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -17002,7 +17332,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -17042,7 +17372,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1beta1.ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -17088,7 +17418,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface ClusterIssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -17721,9 +18051,25 @@ export namespace certmanager {
              * if both this and ClientID are left unset MSI will be used
              */
             clientSecretSecretRef?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzureDNSClientSecretSecretRefArgs>;
+            /**
+             * name of the Azure environment (default AzurePublicCloud)
+             */
             environment?: pulumi.Input<string>;
+            /**
+             * name of the DNS zone that should be used
+             */
             hostedZoneName?: pulumi.Input<string>;
+            /**
+             * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+             */
+            managedIdentity?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversDns01AzureDNSManagedIdentityArgs>;
+            /**
+             * resource group the DNS zone is located in
+             */
             resourceGroupName: pulumi.Input<string>;
+            /**
+             * ID of the Azure subscription
+             */
             subscriptionID: pulumi.Input<string>;
             /**
              * when specifying ClientID and ClientSecret then this field is also needed
@@ -17743,6 +18089,20 @@ export namespace certmanager {
              * Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: pulumi.Input<string>;
+        }
+
+        /**
+         * managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID
+         */
+        export interface IssuerSpecAcmeSolversDns01AzureDNSManagedIdentityArgs {
+            /**
+             * client ID of the managed identity, can not be used at the same time as resourceID
+             */
+            clientID?: pulumi.Input<string>;
+            /**
+             * resource ID of the managed identity, can not be used at the same time as clientID
+             */
+            resourceID?: pulumi.Input<string>;
         }
 
         /**
@@ -18263,7 +18623,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -18309,7 +18669,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -18349,7 +18709,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -18395,7 +18755,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**
@@ -18463,7 +18823,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs>;
             /**
@@ -18509,7 +18869,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermNamespaceSelectorArgs {
             /**
@@ -18549,7 +18909,7 @@ export namespace certmanager {
              */
             labelSelector?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
              */
             namespaceSelector?: pulumi.Input<inputs.certmanager.v1beta1.IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs>;
             /**
@@ -18595,7 +18955,7 @@ export namespace certmanager {
         }
 
         /**
-         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+         * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
          */
         export interface IssuerSpecAcmeSolversHttp01IngressPodTemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionNamespaceSelectorArgs {
             /**

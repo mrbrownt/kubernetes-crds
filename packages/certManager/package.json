@@ -10,7 +10,7 @@
   "pulumi": {
     "resource": true
   },
-  "version": "1.5.2",
+  "version": "1.6.1",
   "description": "Pulumi typescript CRDs for cert manager",
   "main": "index.js",
   "types": "index.d.ts",
